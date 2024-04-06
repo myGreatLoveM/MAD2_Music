@@ -10,10 +10,12 @@
           <div> 
             <h3>{{ song.Sname }} -{{ song.Sartist }}</h3>
           </div>
-          <div style="float:right; margin-top: 10px;">
-            <audio controls :id="song.SID" style="float:left; margin-top: 10px;" @play="handlePlay(i.Sname, i.Sartist)">
-              <source :src="`@assets/Music/${song.Sname} -${song.Sartist}.mp3`" type="audio/mp3">
-            </audio> 
+          <div style="float:right; margin-top: 10px; background-color: aqua;">
+            <h1>{{ song.Surl }}</h1>
+            <audio controls>
+              <source :src="require( '@/assets/Music/' + song.Surl )" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
             <div style="float:left">
               <RatingsComp :sid="song.SID" :ratingsInfo="ratings_dict[song.SID]" />
             </div>
@@ -42,7 +44,7 @@ export default {
       artist: '', 
       username: localStorage.getItem('username'), 
       songs: [], 
-      ratings_dict: {} 
+      ratings_dict: {},
     };
   },
   mounted() {
@@ -58,7 +60,7 @@ export default {
           }
         });
         this.songs = response.data; 
-        console.log(response.data)
+        console.log(response.data, "my super power")
       } catch (error) {
         console.error('Error fetching songs:', error);
       }

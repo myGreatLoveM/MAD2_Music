@@ -74,13 +74,13 @@
     },
     methods: {
     handleEventListener(event) {
-const file = event.target.files[0];
-const reader = new FileReader();
-reader.onload = (e) => {
-this.url = e.target.result;
-};
-reader.readAsDataURL(file);
-},
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+      this.url = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      },
       async fetchData() {
         try {
           const response = await axios.get('http://127.0.0.1:5000/get-data');

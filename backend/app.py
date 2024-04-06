@@ -132,8 +132,10 @@ class SongAPI(Resource):
 
     def post(self):
         args = request.get_json()
+        print(args['url'], "sachin")
         new_song = Songs(**args)
         db.session.add(new_song)
+
         db.session.commit()
         return {"message": "Song added successfully"}, 201 
 
@@ -371,7 +373,7 @@ def add_song():
     genre=args.get('genre')
     data=args.get('url')
     new=dataurl(data)
-    url='@/assets/Music/'+new
+    url=new
     song=Songs.query.filter_by(Sname=name).first()
     try:
         if song:
